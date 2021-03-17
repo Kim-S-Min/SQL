@@ -6,6 +6,8 @@
 름을 대체해 보세요.
 */
 
+
+
 SELECT first_name 이름, 
     last_name 성,
     salary 월급,

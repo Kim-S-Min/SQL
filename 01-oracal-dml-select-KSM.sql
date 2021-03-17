@@ -4,6 +4,8 @@ SELECT * FROM tab;
 -- TABLE : 실제 데이터가 담겨 있는 공간
 -- VIEW : 테이블에서 데이터를 가져와서 표시형식만 정의한 것
 
+
+
 -- 테이블의 구조 확인(DESC)
 DESC employees;
 -- 주석은 대문자, 테이블은 소문자
