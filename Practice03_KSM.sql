@@ -10,7 +10,7 @@ SELECT emp.employee_id, emp.first_name, emp.last_name,
     dept.department_name
 FROM employees emp, departments dept
 WHERE emp.department_id = dept.department_id
-ORDER BY dept.department_name ASC  -- 오름차순
+ORDER BY dept.department_name,  -- 오름차순
     emp.employee_id DESC;
 
 SELECT employee_id, first_name, last_name, department_name
