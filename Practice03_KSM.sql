@@ -6,7 +6,15 @@
 (106건)
 */
 
+SELECT emp.employee_id, emp.first_name, emp.last_name,
+    dept.department_name
+FROM employees emp, departments dept
+WHERE emp.department_id = dept.department_id
+ORDER BY dept.department_name ASC  -- 오름차순
+    emp.employee_id DESC;
 
+SELECT employee_id, first_name, last_name, department_name
+FROM employees NATURAL JOIN department; --NATURAL JOIN
 
 /*
 문제2.
@@ -17,7 +25,14 @@ employees 테이블의 job_id는 현재의 업무아이디를 가지고 있습�
 (106건)
 */
 
-
+SELECT emp.employee_id 사번,
+    emp.first_name 이름,
+    emp.salary 급여,
+    dept.department_name 부서명,
+    jobs.job_title 업무명
+FROM employees emp, departments dept, jobs
+WHERE emp.department_id = dept.department_id AND
+    emp.job_id = jobs.job_id;
 
 /*
 문제2-1.
@@ -25,7 +40,24 @@ employees 테이블의 job_id는 현재의 업무아이디를 가지고 있습�
 (107건)
 */
 
-
+SELECT emp.employee_id 사번,
+    emp.first_name 이름,
+    emp.salary 급여,
+    dept.department_name 부서명,
+    jobs.job_title 업무명
+FROM employees emp, departments dept, jobs
+WHERE emp.department_id = dept.department_id(+) AND -- 왼쪽 테이블은 모두 출력에 참여
+    emp.job_id = jobs.job_id;
+    
+SELECT emp.employee_id 사번,
+    emp.first_name 이름,
+    emp.salary 급여,
+    dept.department_name 부서명,
+    jobs.job_title 업무명
+FROM employees emp LEFT OUTER JOIN departments dept
+                                ON emp.department_id = dept.department_id,
+    jobs
+WHERE emp.job_id = jobs.job_id;
 
 /*
 문제3.
@@ -35,14 +67,32 @@ employees 테이블의 job_id는 현재의 업무아이디를 가지고 있습�
 (27건)
 */
 
-
+SELECT loc.location_id, city,
+    department_name,
+    dept.department_id
+FROM locations loc, departments dept
+WHERE loc.location_id = dept.location_id
+ORDER BY loc.location_id;
 
 /*
 문제3-1.
 문제3에서 부서가 없는 도시도 표시합니다.
 */
 
+SELECT loc.location_id, city,
+    department_name,
+    dept.department_id
+FROM locations loc, departments dept
+WHERE loc.location_id = dept.location_id(+)    -- loc의 모든 레코드를 출력에 참여 LEFT OUTER JOIN
+ORDER BY loc.location_id;
 
+-- ANSI
+SELECT loc.location_id, city,
+    department_name,
+    dept.department_id
+FROM locations loc LEFT OUTER JOIN departments dept
+                                ON loc.location_id = dept.location_id
+ORDER BY loc.location_id;
 
 /*
 (43건)문제4.
@@ -50,6 +100,11 @@ employees 테이블의 job_id는 현재의 업무아이디를 가지고 있습�
 되 지역이름(오름차순), 나라이름(내림차순) 으로 정렬하세요.
 (25건)
 */
+
+SELECT reg.region_name 지역이름,
+    c.country_name 나라이름
+FROM regions reg JOIN countrys c ON (reg.country_id = c.country_id)
+ORDER BY reg.region_name ASC, c.country_name DESC;
 
 
 
@@ -61,7 +116,11 @@ employees 테이블의 job_id는 현재의 업무아이디를 가지고 있습�
 (37건)
 */
 
-
+SELECT emp.employee_id, emp.first_name, emp.hire_date,
+    man.first_name, man.hire_date
+FROM employees emp, employees man
+WHERE emp.manager_id = man.manager_id AND   -- JOIN 조건
+    emp.hire_date = man.hire_date;
 
 /*
 문제6.
@@ -72,7 +131,16 @@ employees 테이블의 job_id는 현재의 업무아이디를 가지고 있습�
 (27건)
 */
 
-
+SELECT c.country_name, 
+    c.country_id,
+    loc.city,
+    loc.location_id,
+    dept.department_name,
+    dept.department_id
+FROM countries c, locations loc, departments dept
+WHERE c.country_id = loc.country_id AND
+    loc.location_id = dept.location_id
+ORDER BY c.country_name;
 
 /*
 문제7.
