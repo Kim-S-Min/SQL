@@ -150,7 +150,14 @@ job_history 테이블은 과거의 담당업무의 데이터를 가지고 있다
 이름은 first_name과 last_name을 합쳐 출력합니다.
 */
 
-
+SELECT emp.employee_id 사번,
+    emp.first_name || ' ' || emp.last_name 이름,
+    emp.job_id 업무아이디,
+    jh.start_date 시작일,
+    jh.end_date 종료일
+FROM employees emp, job_history jh
+WHERE emp.employee_id = jh.employee_id AND
+    jh.job_id = 'AC_ACCOUNT';
 
 /*
 (2건)문제8.
@@ -160,7 +167,20 @@ job_history 테이블은 과거의 담당업무의 데이터를 가지고 있다
 (11건)
 */
 
-
+SELECT dept.department_id, dept.department_name,
+    man.first_name,
+    loc.city,
+    c.country_name,
+    reg.region_name
+FROM departments dept,
+    employees man,
+    locations loc,
+    countries c,
+    regions reg
+WHERE dept.manager_id = man.employee_id AND
+    dept.location_id = loc.location_id AND
+    loc.country_id = c.country_id AND
+    c.region_id = reg.region_id;
 
 /*
 문제9.
@@ -169,3 +189,11 @@ job_history 테이블은 과거의 담당업무의 데이터를 가지고 있다
 부서가 없는 직원(Kimberely)도 표시합니다.
 (106명)
 */
+
+SELECT emp.employee_id 사번,
+    emp.first_name 이름,
+    dept.department_name 부서명,
+    man.first_name "매니저 이름"
+FROM employees emp, employees man, departments dept
+WHERE emp.department_id = dept.department_id(+) AND -- LEFT OUTER
+    emp.manager_id = man.employee_id;
