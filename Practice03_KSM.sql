@@ -13,8 +13,16 @@ WHERE emp.department_id = dept.department_id
 ORDER BY dept.department_name,  -- 오름차순
     emp.employee_id DESC;
 
+-- NATURAL JOIN으로는 붕가능
+-- employees, departments 테이블은 department_id와 manager_id 공통 필드를 가지고 있다
+
 SELECT employee_id, first_name, last_name, department_name
 FROM employees NATURAL JOIN department; --NATURAL JOIN
+-- 아래 쿼리와 동일
+SELECT employee_id, first_name, last_name, dept.department_name
+FROM employees emp, department dept
+WHERE emp.department_id = dept.department_id AND
+    emp.
 
 /*
 문제2.
