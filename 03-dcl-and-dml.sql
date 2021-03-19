@@ -166,3 +166,42 @@ DESC book;
 ALTER TABLE book
 ADD CONSTRAINT pk_book_id PRIMARY KEY(book_id);
 DESC book;
+
+-- FOREIGN KEY 추가
+-- book 테이블의 author_id 가 author의 author_id를 참조
+ALTER TABLE book
+ADD CONSTRAINT
+    fk_author_id FOREIGN KEY (author_id)
+        REFERENCES author(author_id);
+DESC book;
+
+-- COMMENT
+COMMENT ON TABLE book IS 'Book Information';
+COMMENT ON TABLE author IS 'Author Information';
+
+-- 체이블 커멘트 확인
+SELECT * FROM user_tab_comments;
+SELECT comments FROM user_tab_comments
+WHERE table_name = 'Book';
+
+-- Date Dictionary
+-- Oracle은 내부에서 발생하는 모든 정보를 Data Dictionary에 담아두고 있다
+-- 계정별로 USER_(일반사용자), ALL_(전체 사용자), DBA_(관리자 전용) 접근범위를 제한한다
+-- 모든 딕셔너리 확인
+SHOW user;
+SELECT * FROM dictionary;
+SELECT COUNT(*) FROM dictionary;
+
+-- DBA_Dictionary 확인
+-- DBA로 로그인 필요 as sysdba
+
+-- 사용자 DB객체 dictionary USER_OBJECTS
+SELECT * FROM user_objects;
+SELECT object_name, object_type FROM user_objects;
+SELECT * FROM user_objects WHERE OBJECT_NAME = 'Book';
+
+
+-- 제약조건확인 dictionary USER_CONSTRAINTS
+SELECT * FROM user_constraints;
+-- 제약조건이 걸린 컬럼 확인
+SELECT * FROM user_cons_columns;
