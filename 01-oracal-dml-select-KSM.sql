@@ -143,6 +143,10 @@ SELECT first_name, salary
 FROM employees
 WHERE first_name LIKE '_a_';
 
+SELECT first_name, salary
+FROM employees
+WHERE first_name LIKE '%a%';
+
 ----------------------
 /*
 급여가 14000 이하이거나 17000 이상인 사원의 이름과 급여를 출력하십시오.
