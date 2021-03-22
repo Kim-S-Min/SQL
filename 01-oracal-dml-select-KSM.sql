@@ -136,7 +136,7 @@ WHERE department_id = 10;
 -- 이름에 am을 포함한 모든 사원들을 출력하십시오.
 SELECT first_name, salary
 FROM employees
-WHERE first_name LIKE '%am%';
+WHERE first_name LIKE '%a%';
 
 -- 이름의 두번째 글자가 a인 사원의 목록을 출력하십시오.
 SELECT first_name, salary
@@ -307,7 +307,7 @@ SELECT sysdate FROM employees;  -- 테이블 내의 레코드 갯수만큼 출�
 
 
 SELECT sysdate, -- 시스템 날짜
-    ADD_MONTHS(sysdate, 2)  -- 오늘부터 2개월 후
+    ADD_MONTHS(sysdate, 2),  -- 오늘부터 2개월 후
     MONTHS_BETWEEN(TO_DATE('1999-12-31', 'YYYY-MM-DD'), sysdate),  -- 개월차
  --   NEXT_DAY(sysdate, 'MONTH'),    -- 오늘이후 첫번째 금요일
     ROUND(sysdate, 'MONTH'),    -- 날짜 반올림
